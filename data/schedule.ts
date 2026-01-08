@@ -1,0 +1,77 @@
+export const busSchedule = [
+  {
+    id: 1,
+    from: "Lilongwe",
+    destination: "Mzuzu",
+    fare: 39999.0,
+    busStops: ["Mponera", "Kasungu", "Jenda", "Mzuzu"],
+    departureTime: "7:00 AM",
+    arrivalTime: "1:00 PM",
+    hourDifference: 6,
+  },
+  {
+    id: 2,
+    from: "Lilongwe",
+    destination: "Blantyre",
+    fare: 44999.0,
+    busStops: ["Dedza", "Ntcheu", "Zalewa", "Blantyre"],
+    departureTime: "7:00 AM",
+    arrivalTime: "1:00 PM",
+    hourDifference: 6,
+  },
+  {
+    id: 3,
+    from: "Blantyre",
+    destination: "Lilongwe",
+    fare: 44999.0,
+    busStops: ["Zalewa", "Ntcheu", "Dedza", "Lilongwe"],
+    departureTime: "1:00 PM",
+    arrivalTime: "6:00 PM",
+    hourDifference: 5,
+  },
+  {
+    id: 4,
+    from: "Blantyre",
+    destination: "Mzuzu",
+    fare: 69999.0,
+    busStops: ["Ntcheu", "Lilongwe", "Kasungu", "Mzuzu"],
+    departureTime: "7:00 AM",
+    arrivalTime: "6:30 PM",
+    hourDifference: 11.5,
+  },
+  {
+    id: 5,
+    from: "Mzuzu",
+    destination: "Lilongwe",
+    fare: 39999.0,
+    busStops: ["Jenda", "Kasungu", "Mponera", "Lilongwe"],
+    departureTime: "7:00 AM",
+    arrivalTime: "1:00 PM",
+    hourDifference: 6,
+  },
+  {
+    id: 6,
+    from: "Mzuzu",
+    destination: "Blantyre",
+    fare: 69999.0,
+    busStops: ["Jenda", "Kasungu", "Lilongwe", "Blantyre"],
+    departureTime: "7:00 AM",
+    arrivalTime: "1:00 PM",
+    hourDifference: 6,
+  },
+];
+
+export const cities = [
+  {
+    id: 1,
+    name: "Blantyre",
+  },
+  {
+    id: 2,
+    name: "Lilongwe",
+  },
+  {
+    id: 3,
+    name: "Mzuzu",
+  },
+];
