@@ -4,7 +4,7 @@ html {
   font-family: "Inter", sans-serif;
   font-size: clamp(16px, 1.4vw, 1.3em);
   scroll-behavior: smooth;
-  scroll-padding-top: 2rem;
+  scroll-padding-top: 15rem;
   overflow-x: hidden;
   background-color: #fff;
 }

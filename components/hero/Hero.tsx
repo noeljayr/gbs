@@ -4,7 +4,10 @@ import ReserveTicketWrapper from "../reserve-ticket/ReserveWrapper";
 
 function Hero() {
   return (
-    <div className="bg-[#F2F2F2] border border-[#D4D4D4]/65 rounded-2xl relative px-10 max-sm:px-6 max-sm:py-20 py-30">
+    <div
+      id="reserve-ticket"
+      className="bg-[#F2F2F2] border border-[#D4D4D4]/65 rounded-2xl relative px-10 max-sm:px-6 max-sm:py-20 py-30"
+    >
       <div className="flex flex-col relative z-1">
         <h2 className="font-normal max-[720px]:w-full max-[720px]:text-center">
           Travel Across Malawi for Less

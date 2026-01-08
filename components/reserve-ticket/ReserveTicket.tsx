@@ -4,6 +4,7 @@ import DatePicker from "./Date";
 import Destination from "./Destination";
 import From from "./From";
 import { useState, useEffect } from "react";
+import { useReservationStore } from "@/utils/reservationStore";
 
 interface ReserveTicketProps {
   onReserve?: (data: {
@@ -15,10 +16,26 @@ interface ReserveTicketProps {
 }
 
 function ReserveTicket({ onReserve }: ReserveTicketProps) {
+  const {
+    from: storeFrom,
+    destination: storeDestination,
+    clearReservationData,
+  } = useReservationStore();
+
   const [from, setFrom] = useState("");
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState<Date | null>(null);
   const [travelers, setTravelers] = useState(1);
+
+  // Prepopulate data from store when it changes
+  useEffect(() => {
+    if (storeFrom && storeDestination) {
+      setFrom(storeFrom);
+      setDestination(storeDestination);
+      // Clear the store data after using it
+      clearReservationData();
+    }
+  }, [storeFrom, storeDestination, clearReservationData]);
 
   // Update parent component whenever form data changes
   useEffect(() => {
@@ -51,7 +68,7 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
 
   return (
     <div
-      id="reserve-ticket"
+      
       className="mt-6 w-130 max-[720px]:w-full grid gap-1 grid-cols-[1fr_auto] max-[720px]:grid-cols-1 bg-white rounded-[0.55rem] border border-[#1E1E1E]/10 p-1"
     >
       <div className="flex flex-col space-y-2">
