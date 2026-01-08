@@ -34,9 +34,9 @@ function Testimonials() {
         <h3>What fellow travelers are saying.</h3>
       </div>
 
-      <div className="grid sm:grid-cols-3 max-sm:grid-flow-col overflow-x-auto gap-4">
+      <div className="grid min-[800px]:grid-cols-3  max-[800px]:grid-flow-col overflow-x-auto gap-4">
         {reviews.map((r) => (
-          <div key={r.name} className="bg-white max-sm:w-[80vw] border border-(--black)/10 rounded-xl flex flex-col">
+          <div key={r.name} className="bg-white max-[800px]:w-[40vw] max-sm:w-[80vw] border border-(--black)/10 rounded-xl flex flex-col">
             <div className="flex flex-col space-y-2 p-3 pt-4">
               <div className="flex items-center space-x-2">
                 <Image

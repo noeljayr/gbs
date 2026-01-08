@@ -77,13 +77,13 @@ function Footer() {
         <div className="flex space-x-2">
           <span className="font-normal">© 2025</span>
 
-          <span className="opacity-25">•</span>
+          {/* <span className="opacity-25">•</span>
 
           <span className="font-normal opacity-65">Terms</span>
 
           <span className="opacity-25">•</span>
 
-          <span className="font-normal opacity-65">Privacy</span>
+          <span className="font-normal opacity-65">Privacy</span> */}
         </div>
 
         <div className="flex item-center space-x-2 ml-auto mt-6">

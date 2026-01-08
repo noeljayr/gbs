@@ -9,7 +9,7 @@ import { motionTransition } from "@/utils/motion-transition";
 import { deleteUrlParam } from "@/utils/url-functions";
 
 function MobileNav() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const searchParams = useSearchParams();
   const state = searchParams.get("mobile-navigation");
 
@@ -26,7 +26,7 @@ function MobileNav() {
       {open && (
         <div
           onClick={() => deleteUrlParam("mobile-navigation")}
-          className="flex fixed z-100 h-screen w-screen  bg-[#1E1E1E]/10 left-0 top-0 flex-col p-4"
+          className="flex min-[720px]:hidden fixed z-100 h-screen w-screen  bg-[#1E1E1E]/10 left-0 top-0 flex-col p-4"
         ></div>
       )}
       <AnimatePresence>
