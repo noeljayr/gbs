@@ -5,6 +5,8 @@ import Destination from "./Destination";
 import From from "./From";
 import { useState, useEffect } from "react";
 import { useReservationStore } from "@/utils/reservationStore";
+import { useRouter } from "nextjs-toploader/app";
+import { encodeReservationToUrl } from "@/utils/reservationUrl";
 
 interface ReserveTicketProps {
   onReserve?: (data: {
@@ -16,6 +18,7 @@ interface ReserveTicketProps {
 }
 
 function ReserveTicket({ onReserve }: ReserveTicketProps) {
+  const router = useRouter();
   const {
     from: storeFrom,
     destination: storeDestination,
@@ -49,7 +52,7 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
     }
   }, [from, destination, date, travelers, onReserve]);
 
-  const handleReserve = () => {
+  const handleReserveClick = () => {
     const reservationData = {
       from,
       destination,
@@ -57,20 +60,23 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
       travelers,
     };
 
-    if (onReserve) {
-      onReserve(reservationData);
-    } else {
-      console.log("Reservation data:", reservationData);
+    if (date) {
+      // Navigate to checkout with URL params using utility function
+      const urlParams = encodeReservationToUrl({
+        from,
+        destination,
+        date,
+        travelers,
+      });
+
+      router.push(`/checkout?${urlParams}`);
     }
   };
 
   const isFormValid = from && destination && date && travelers > 0;
 
   return (
-    <div
-      
-      className="mt-6 w-130 max-[720px]:w-full grid gap-1 grid-cols-[1fr_auto] max-[720px]:grid-cols-1 bg-white rounded-[0.55rem] border border-[#1E1E1E]/10 p-1"
-    >
+    <div className="mt-6 w-130 max-[720px]:w-full grid gap-1 grid-cols-[1fr_auto] max-[720px]:grid-cols-1 bg-white rounded-[0.55rem] border border-[#1E1E1E]/10 p-1">
       <div className="flex flex-col space-y-2">
         <div className="grid relative z-2 grid-cols-[1fr_1fr_6rem_5rem] max-[720px]:w-full max-[720px]:grid-cols-2 gap-1">
           <From value={from} onChange={setFrom} excludeCity={destination} />
@@ -84,7 +90,7 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
         </div>
       </div>
       <button
-        onClick={handleReserve}
+        onClick={handleReserveClick}
         disabled={!isFormValid}
         style={{
           cursor: isFormValid ? "pointer" : "not-allowed",

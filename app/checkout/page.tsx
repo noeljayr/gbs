@@ -2,35 +2,69 @@
 
 import { IconChevronLeft, IconClockHour2, IconCopy } from "@tabler/icons-react";
 import Link from "next/link";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { formatAmountWithCommas } from "@/utils/formatNumber";
 import PaymentMethods from "@/components/PaymentMethods";
+import {
+  decodeReservationFromUrl,
+  formatReservationForDisplay,
+} from "@/utils/reservationUrl";
+import { useRouter } from "nextjs-toploader/app";
+
+interface ReservationData {
+  from: string;
+  destination: string;
+  date: string;
+  travelers: number;
+}
 
 function CheckoutContent() {
   const searchParams = useSearchParams();
-  const plan = searchParams.get("ticket-details");
-  const [selectedPlan, setSelectedPlan] = useState<String | null>(null);
+  const [reservationData, setReservationData] =
+    useState<ReservationData | null>(null);
   const [price, setPrice] = useState(0);
   const [method, setMethod] = useState("tnm");
 
   useEffect(() => {
-    if (!plan) return;
-    if (plan.length == 0) return;
-    setSelectedPlan(plan);
-  }, [plan]);
+    // Read reservation data from URL params using utility function
+    const reservationData = decodeReservationFromUrl(searchParams);
+
+    if (reservationData) {
+      const displayData = formatReservationForDisplay(reservationData);
+      setReservationData(displayData);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
-    setPrice(50000);
-  }, []);
+    // Calculate price based on number of travelers
+    const basePrice = 50000;
+    const totalPrice = reservationData
+      ? basePrice * reservationData.travelers
+      : basePrice;
+    setPrice(totalPrice);
+  }, [reservationData]);
+
+  const getTicketDescription = () => {
+    if (!reservationData) return "1 Ticket";
+    const ticketText = reservationData.travelers === 1 ? "Ticket" : "Tickets";
+    return `${reservationData.travelers} ${ticketText} from ${reservationData.from} to ${reservationData.destination}`;
+  };
+
+  if (!reservationData) {
+    const router = useRouter();
+
+    router.push("/");
+
+    return <></>;
+  }
 
   return (
     <div className="fixed grid h-screen w-screen top-0 left-0 grid-cols-2 overflow-y-hidden max-[900px]:grid-cols-1 max-[900px]:grid-rows-[60%_1fr] gap-10">
       <div className="flex flex-col w-full h-full overflow-y-auto pt-10 max-[900px]:px-4 pl-10">
         <Link href={"/"} className="flex items-center space-x-1 w-fit mb-10">
           <IconChevronLeft className="h-4 w-4 opacity-50" />
-          <span className="font-p1 font-semibold">Gian{`’`}s Bus Services</span>
+          <span className="font-p1 font-semibold">Gian{`'`}s Bus Services</span>
         </Link>
 
         <div className="flex flex-col space-y-4">
@@ -122,9 +156,7 @@ function CheckoutContent() {
 
           <div className="flex flex-col space-y-1.5">
             <div className="w-full grid-cols-[1fr_auto] gap-4 flex items-center p-3 rounded-[0.35rem] border border-[#E7E7E7]">
-              <span className="truncate w-full">
-                1 Ticket from Lilongwe to Mzuzu
-              </span>
+              <span className="truncate w-full">{getTicketDescription()}</span>
               <span className="font-normal opacity-75">
                 K{formatAmountWithCommas(price.toFixed(2))}
               </span>
