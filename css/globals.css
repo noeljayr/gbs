@@ -70,7 +70,15 @@ html {
     padding-bottom: 0.25rem;
     z-index: 3;
   }
+
+  @media (width < 720px) {
+    .popup{
+      top: 105%;
+    }
+  }
 }
+
+
 
 :root {
   --black: #1e1e1e;

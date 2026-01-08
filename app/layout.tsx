@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning lang="en">
       <body className={` antialiased px-10 max-sm:px-4 min-[1440px]:px-[14vw] py-20`}>
         <NextTopLoader color="#6d67fe" showSpinner={false} />
         <Navbar />

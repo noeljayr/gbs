@@ -36,7 +36,7 @@ function Testimonials() {
 
       <div className="grid sm:grid-cols-3 max-sm:grid-flow-col overflow-x-auto gap-4">
         {reviews.map((r) => (
-          <div className="bg-white max-sm:w-[80vw] border border-(--black)/10 rounded-xl flex flex-col">
+          <div key={r.name} className="bg-white max-sm:w-[80vw] border border-(--black)/10 rounded-xl flex flex-col">
             <div className="flex flex-col space-y-2 p-3 pt-4">
               <div className="flex items-center space-x-2">
                 <Image

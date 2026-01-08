@@ -5,6 +5,8 @@ import IconUser from "../Icons/IconUser";
 import { useClickOutside } from "@/utils/clickOutSide";
 import { IconMinus, IconPlus } from "@tabler/icons-react";
 import { useNumericInput } from "@/utils/userNumericInput";
+import NumberFlow from "@number-flow/react";
+
 
 interface TravelersProps {
   value: number;
@@ -52,24 +54,23 @@ function Travelers({ value, onChange }: TravelersProps) {
 
   return (
     <div ref={containerRef} className="flex relative">
-      <div className="w-full border relative z-1 cursor-pointer py-1 px-1.5 border-[#EDEDED] rounded-[0.48rem] bg-[#F5F5F5] flex flex-col space-y-1">
+      <div  onClick={() => setShow(!show)} className="w-full border relative z-1 cursor-pointer py-1 px-1.5 border-[#EDEDED] rounded-[0.48rem] bg-[#F5F5F5] flex flex-col space-y-1">
         <span className="flex items-center opacity-50 font-p3">
           <IconUser className="h-2.5 w-2.5 opacity-50 mr-0.5" />
           Travelers
         </span>
 
-        <div
-          onClick={() => setShow(!show)}
-          className="w-full flex items-center"
-        >
+        <div className="w-full flex items-center">
           <span className="w-full outline-0 border-0 bg-transparent text-[calc(var(--p2)*0.9)] max-[720px]:font-p2">
-            {value}
+           <NumberFlow style={{
+            fontSize: 'calc(var(--p2) * 0.9)'
+           }} value={value} />
           </span>
         </div>
       </div>
 
       {show && (
-        <div className="popup left-0 w-40 absolute">
+        <div className="popup min-[720px]:left-0 max-[720px]:right-0 w-40 absolute">
           <span className="w-full font-medium opacity-50 border-b border-b-(--border) py-2 px-3 font-p2 mb-1">
             How many tickets?
           </span>

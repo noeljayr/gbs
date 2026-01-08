@@ -9,9 +9,10 @@ import { useClickOutside } from "@/utils/clickOutSide";
 interface FromProps {
   value: string;
   onChange: (value: string) => void;
+  excludeCity?: string;
 }
 
-function From({ value, onChange }: FromProps) {
+function From({ value, onChange, excludeCity }: FromProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
 
@@ -19,22 +20,18 @@ function From({ value, onChange }: FromProps) {
     if (show) setShow(false);
   });
 
-  
   return (
     <div ref={containerRef} className="relative flex">
       <div
-        
-        className="w-full border relative z-1 cursor-pointer py-1 px-1.5 border-[#EDEDED] rounded-[0.48rem] bg-[#F5F5F5] flex flex-col space-y-1"
+        onClick={() => setShow(!show)}
+        className="w-full border relative z-1 cursor-pointer py-1 px-1.5 border-[#EDEDED] rounded-[0.48rem] bg-[#F5F5F5] flex flex-col space-y-1.5"
       >
         <span className="flex items-center opacity-50 font-p3">
           <IconMapPin className="h-2.5 w-2.5 opacity-50 mr-0.5" />
           From
         </span>
 
-        <div
-          onClick={() => setShow(!show)}
-          className="w-full flex items-center"
-        >
+        <div className="w-full flex items-center">
           <span className="text-[calc(var(--p2)*0.9)] max-[720px]:font-p2">
             {value || "Departing from"}
           </span>
@@ -53,28 +50,30 @@ function From({ value, onChange }: FromProps) {
           </span>
 
           {cities &&
-            cities.map((c) => (
-              <span
-                key={c.id}
-                onClick={() => {
-                  onChange(c.name);
-                  setShow(false);
-                }}
-                className="option w-[95%] relative rounded-[0.35rem] mx-auto space-x-2 font-p2 px-2 py-[0.35rem] cursor-pointer bg-white hover:brightness-90 flex items-center"
-              >
-                <span className="opacity-75">{c.name}</span>
+            cities
+              .filter((c) => !excludeCity || c.name !== excludeCity)
+              .map((c) => (
+                <span
+                  key={c.id}
+                  onClick={() => {
+                    onChange(c.name);
+                    setShow(false);
+                  }}
+                  className="option w-[95%] relative rounded-[0.35rem] mx-auto space-x-2 font-p2 px-2 py-[0.35rem] cursor-pointer bg-white hover:brightness-90 flex items-center"
+                >
+                  <span className="opacity-75">{c.name}</span>
 
-                {c.name === value && (
-                  <span className="absolute right-0">
-                    <IconCheck
-                      stroke={2}
-                      color={"var(--icon-black)"}
-                      className="h-4 w-4 opacity-65"
-                    />
-                  </span>
-                )}
-              </span>
-            ))}
+                  {c.name === value && (
+                    <span className="absolute right-0">
+                      <IconCheck
+                        stroke={2}
+                        color={"var(--icon-black)"}
+                        className="h-4 w-4 opacity-65"
+                      />
+                    </span>
+                  )}
+                </span>
+              ))}
         </div>
       )}
     </div>

@@ -56,8 +56,8 @@ export const busSchedule = [
     fare: 69999.0,
     busStops: ["Jenda", "Kasungu", "Lilongwe", "Blantyre"],
     departureTime: "7:00 AM",
-    arrivalTime: "1:00 PM",
-    hourDifference: 6,
+    arrivalTime: "6:30 PM",
+    hourDifference: 11.5,
   },
 ];
 

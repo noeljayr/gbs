@@ -1,15 +1,15 @@
 "use client";
 import Travelers from "./Travelers";
-import Date from "./Date";
+import DatePicker from "./Date";
 import Destination from "./Destination";
 import From from "./From";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ReserveTicketProps {
   onReserve?: (data: {
     from: string;
     destination: string;
-    date: string;
+    date: Date | null;
     travelers: number;
   }) => void;
 }
@@ -17,8 +17,20 @@ interface ReserveTicketProps {
 function ReserveTicket({ onReserve }: ReserveTicketProps) {
   const [from, setFrom] = useState("");
   const [destination, setDestination] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState<Date | null>(null);
   const [travelers, setTravelers] = useState(1);
+
+  // Update parent component whenever form data changes
+  useEffect(() => {
+    if (onReserve) {
+      onReserve({
+        from,
+        destination,
+        date,
+        travelers,
+      });
+    }
+  }, [from, destination, date, travelers, onReserve]);
 
   const handleReserve = () => {
     const reservationData = {
@@ -44,9 +56,13 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
     >
       <div className="flex flex-col space-y-2">
         <div className="grid relative z-2 grid-cols-[1fr_1fr_6rem_5rem] max-[720px]:w-full max-[720px]:grid-cols-2 gap-1">
-          <From value={from} onChange={setFrom} />
-          <Destination value={destination} onChange={setDestination} />
-          <Date value={date} onChange={setDate} />
+          <From value={from} onChange={setFrom} excludeCity={destination} />
+          <Destination
+            value={destination}
+            onChange={setDestination}
+            excludeCity={from}
+          />
+          <DatePicker value={date} onChange={setDate} />
           <Travelers value={travelers} onChange={setTravelers} />
         </div>
       </div>
