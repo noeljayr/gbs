@@ -72,13 +72,11 @@ html {
   }
 
   @media (width < 720px) {
-    .popup{
+    .popup {
       top: 105%;
     }
   }
 }
-
-
 
 :root {
   --black: #1e1e1e;
@@ -291,4 +289,51 @@ button {
 
 button:hover {
   filter: var(--cta-hover);
+}
+/* Custom Swiper Styles */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 1rem !important;
+}
+
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  margin: 0 4px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  transform: scale(1.2) !important;
+}
+
+/* Hide default navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+/* Custom navigation button styles */
+.schedule-swiper-button-prev,
+.schedule-swiper-button-next {
+  transition: all 0.3s ease;
+}
+
+.schedule-swiper-button-prev:hover,
+.schedule-swiper-button-next:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.schedule-swiper-button-prev:disabled,
+.schedule-swiper-button-next:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.schedule-swiper-button-prev:disabled:hover,
+.schedule-swiper-button-next:disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

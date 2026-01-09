@@ -1,6 +1,7 @@
 import { busSchedule } from "@/data/schedule";
 import { formatNumber } from "@/utils/formatNumber";
 import ReserveButton from "./ReserveButton";
+import MobileScheduleSwiper from "./MobileScheduleSwiper";
 
 function ScheduleTable() {
   return (
@@ -85,89 +86,8 @@ function ScheduleTable() {
         ))}
       </div>
 
-      {/* Mobile Card View */}
-      <div className="flex flex-col space-y-4 md:hidden">
-        {busSchedule.map((s) => (
-          <div
-            key={s.id}
-            className="bg-white border border-(--black)/10 rounded-2xl"
-          >
-            <div className="flex flex-col p-3">
-              {/* Route Header */}
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center space-x-3">
-                  <span
-                    style={{
-                      WebkitTextStrokeWidth: 1,
-                      WebkitTextStrokeColor: "var(--black)",
-                    }}
-                    className="text-white opacity-10 font-bold text-2xl"
-                  >
-                    {s.id}
-                  </span>
-                  <div className="flex items-center space-x-2">
-                    <span className="font-medium text-gray-900">{s.from}</span>
-                    <span className="text-gray-400">→</span>
-                    <span className="font-medium text-gray-900">
-                      {s.destination}
-                    </span>
-                  </div>
-                </div>
-                <span className="p-2 font-p3 bg-[#F5F5F5] border rounded-lg border-[#E3E3E3]">
-                  <span className="opacity-85 font-medium text-sm">
-                    K {formatNumber(s.fare.toFixed(2))}
-                  </span>
-                </span>
-              </div>
-
-              {/* Time Info */}
-              <div className="flex items-center justify-between mb-3 bg-gray-50 rounded-lg p-3">
-                <div className="">
-                  <div className="text-xs text-gray-500 mb-1">Departure</div>
-                  <div className="font-medium text-gray-900">
-                    {s.departureTime}
-                  </div>
-                </div>
-                <div className="flex-1 mx-4">
-                  <div className="h-px bg-gray-300 relative">
-                    <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-50 px-2">
-                      <span className="text-xs text-gray-500">
-                        {s.hourDifference}h
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xs text-gray-500 mb-1">Arrival</div>
-                  <div className="font-medium text-gray-900">
-                    {s.arrivalTime}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bus Stops */}
-              <div className="mb-4 mt-2">
-                <div className=" text-gray-500 mb-2">Bus stops</div>
-                <div className="flex flex-wrap gap-1">
-                  {s.busStops.map((stop, index) => (
-                    <span
-                      key={index}
-                      className="inline-flex font-p3 items-center px-4 py-2 bg-black/5 border-black/10 border rounded-full"
-                    >
-                      {stop}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Reserve Button */}
-            <div className="p-3 border-t border-gray-100">
-              <ReserveButton from={s.from} destination={s.destination} />
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Mobile Card View with Swiper */}
+      <MobileScheduleSwiper />
     </div>
   );
 }
