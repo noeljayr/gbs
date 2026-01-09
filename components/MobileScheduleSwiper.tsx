@@ -87,7 +87,7 @@ function MobileScheduleSwiper() {
                     <div className="flex-1 mx-4">
                       <div className="border-t border-t-black/15 border-dashed h-px relative">
                         <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-50 px-2">
-                        <span className="h-8 w-8 justify-center text0center flex items-center text-white rounded-full bg-(--black)/80 font-p4">
+                          <span className="h-8 w-8 justify-center text0center flex items-center text-white rounded-full bg-(--black)/80 font-p5">
                             {s.hourDifference}hrs
                           </span>
                         </div>
