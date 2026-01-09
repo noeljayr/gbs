@@ -100,7 +100,7 @@ function MobileScheduleSwiper() {
                       {s.busStops.map((stop, index) => (
                         <span
                           key={index}
-                          className="inline-flex text-xs items-center px-2 py-1 bg-black/5 border-black/10 border rounded-full"
+                          className="inline-flex text-xs items-center px-3 py-1 bg-black/5 border-black/10 border rounded-full font-p3"
                         >
                           {stop}
                         </span>
