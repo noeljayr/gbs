@@ -27,7 +27,42 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={` antialiased px-10 max-sm:px-4 min-[1440px]:px-[14vw] py-20 pb-8`}>
+      <head>
+        <meta name="color-scheme" content="light" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const savedTheme = localStorage.getItem('theme') || 'blue';
+                  const root = document.documentElement;
+                  
+                  switch (savedTheme) {
+                    case 'green':
+                      root.style.setProperty('--primary', '#0FC754');
+                      root.style.setProperty('--cta-color', '#ffff');
+                      break;
+                    case 'orange':
+                      root.style.setProperty('--primary', '#FFAE05');
+                      root.style.setProperty('--cta-color', '#1E1E1E');
+                      break;
+                    case 'red':
+                      root.style.setProperty('--primary', '#FF2605');
+                      root.style.setProperty('--cta-color', '#ffff');
+                      break;
+                    default:
+                      root.style.setProperty('--primary', '#0169b7');
+                      root.style.setProperty('--cta-color', '#ffff');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
+      <body
+        className={` antialiased px-10 max-sm:px-4 min-[1440px]:px-[14vw] py-20 pb-8`}
+      >
         <NextTopLoader color="var(--primary)" showSpinner={false} />
         <Navbar />
         <Suspense fallback={null}>

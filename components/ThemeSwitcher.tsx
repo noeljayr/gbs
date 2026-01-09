@@ -6,7 +6,7 @@ import { IconCheck, IconPalette } from "@tabler/icons-react";
 const themes = [
   { name: "Blue", color: "#0169b7", value: "blue" },
   { name: "Green", color: "#0FC754", value: "green" },
-  { name: "Orange", color: "#FFAE05", value: "orange" },
+  { name: "Orange", color: "#F9C048", value: "orange" },
   { name: "Red", color: "#FF2605", value: "red" },
 ];
 
@@ -19,7 +19,16 @@ function ThemeSwitcher() {
     // Load saved theme from localStorage
     const savedTheme = localStorage.getItem("theme") || "blue";
     setCurrentTheme(savedTheme);
-    applyTheme(savedTheme);
+
+    // Only apply theme if it's different from what's already applied
+    const currentPrimary = getComputedStyle(document.documentElement)
+      .getPropertyValue("--primary")
+      .trim();
+
+    const expectedPrimary = getThemeColor(savedTheme);
+    if (currentPrimary !== expectedPrimary) {
+      applyTheme(savedTheme);
+    }
   }, []);
 
   useEffect(() => {
@@ -42,6 +51,19 @@ function ThemeSwitcher() {
     };
   }, [isOpen]);
 
+  const getThemeColor = (theme: string) => {
+    switch (theme) {
+      case "green":
+        return "#0FC754";
+      case "orange":
+        return "#F9C048";
+      case "red":
+        return "#FF2605";
+      default:
+        return "#0169b7";
+    }
+  };
+
   const applyTheme = (theme: string) => {
     const root = document.documentElement;
 
@@ -50,8 +72,8 @@ function ThemeSwitcher() {
         root.style.setProperty("--primary", "#0FC754");
         root.style.setProperty("--cta-color", "#ffff");
         break;
-      case "Yellow":
-        root.style.setProperty("--primary", "#FFAE05");
+      case "orange":
+        root.style.setProperty("--primary", "#F9C048");
         root.style.setProperty("--cta-color", "#1E1E1E");
         break;
       case "red":
