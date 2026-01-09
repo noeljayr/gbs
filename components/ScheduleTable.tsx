@@ -113,7 +113,7 @@ function ScheduleTable() {
                     </span>
                   </div>
                 </div>
-                <span className="p-2 bg-[#F5F5F5] border rounded-lg border-[#E3E3E3]">
+                <span className="p-2 font-p3 bg-[#F5F5F5] border rounded-lg border-[#E3E3E3]">
                   <span className="opacity-85 font-medium text-sm">
                     K {formatNumber(s.fare.toFixed(2))}
                   </span>
@@ -147,7 +147,7 @@ function ScheduleTable() {
 
               {/* Bus Stops */}
               <div className="mb-4 mt-2">
-                <div className=" font-p1 text-gray-500 mb-2">Bus stops</div>
+                <div className=" text-gray-500 mb-2">Bus stops</div>
                 <div className="flex flex-wrap gap-1">
                   {s.busStops.map((stop, index) => (
                     <span

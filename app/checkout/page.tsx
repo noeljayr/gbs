@@ -2,14 +2,10 @@
 
 import { IconChevronLeft, IconClockHour2, IconCopy } from "@tabler/icons-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import { formatAmountWithCommas } from "@/utils/formatNumber";
 import PaymentMethods from "@/components/PaymentMethods";
-import {
-  decodeReservationFromUrl,
-  formatReservationForDisplay,
-} from "@/utils/reservationUrl";
+import { useReservationStore } from "@/utils/reservationStore";
 import { useRouter } from "nextjs-toploader/app";
 
 interface ReservationData {
@@ -19,22 +15,43 @@ interface ReservationData {
   travelers: number;
 }
 
-function CheckoutContent() {
-  const searchParams = useSearchParams();
+function page() {
+  const router = useRouter();
+  const { loadFromCookies } = useReservationStore();
   const [reservationData, setReservationData] =
     useState<ReservationData | null>(null);
   const [price, setPrice] = useState(0);
   const [method, setMethod] = useState("tnm");
 
   useEffect(() => {
-    // Read reservation data from URL params using utility function
-    const reservationData = decodeReservationFromUrl(searchParams);
+    const initializeReservationData = () => {
+      // Load reservation data from cookies
+      loadFromCookies();
 
-    if (reservationData) {
-      const displayData = formatReservationForDisplay(reservationData);
-      setReservationData(displayData);
-    }
-  }, [searchParams]);
+      // Get the current state from the store after loading
+      const storedData = useReservationStore.getState();
+      console.log("Checkout page - stored data:", storedData);
+
+      if (storedData.from && storedData.destination && storedData.date) {
+        const displayData = {
+          from: storedData.from,
+          destination: storedData.destination,
+          date: storedData.date.toLocaleDateString(),
+          travelers: storedData.travelers,
+        };
+        console.log("Checkout page - setting reservation data:", displayData);
+        setReservationData(displayData);
+      } else {
+        console.log(
+          "Checkout page - no valid reservation data, redirecting to home"
+        );
+        router.push("/");
+      }
+    };
+
+    // Small delay to ensure cookies are loaded properly
+    setTimeout(initializeReservationData, 100);
+  }, []); // Empty dependency array to run only once
 
   useEffect(() => {
     // Calculate price based on number of travelers
@@ -52,11 +69,7 @@ function CheckoutContent() {
   };
 
   if (!reservationData) {
-    const router = useRouter();
-
-    router.push("/");
-
-    return <></>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -222,14 +235,6 @@ function CheckoutContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-function page() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <CheckoutContent />
-    </Suspense>
   );
 }
 

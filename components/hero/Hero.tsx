@@ -19,11 +19,11 @@ function Hero() {
         <ReserveTicketWrapper />
       </div>
 
-      <div className="w-full h-full absolute z-0 overflow-hidden top-0 left-0">
+      <div className="w-full h-full grid absolute z-0 overflow-hidden top-0 left-0">
         <Image
           src={bus}
           alt="illustration of a bus"
-          className="absolute w-fit h-120 max-[720px]:hidden -right-30 top-2 opacity-10 z-0"
+          className="absolute w-fit h-120 max-[720px]:h-[unset] max-[720px]:w-scree max-[720px]:scale-[1.25] object-contain -right-30 top-2 max-[720px]:top-[20%] max-[720px]:-right-15 opacity-10 z-0"
         />
       </div>
     </div>

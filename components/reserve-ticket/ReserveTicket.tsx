@@ -6,7 +6,6 @@ import From from "./From";
 import { useState, useEffect } from "react";
 import { useReservationStore } from "@/utils/reservationStore";
 import { useRouter } from "nextjs-toploader/app";
-import { encodeReservationToUrl } from "@/utils/reservationUrl";
 
 interface ReserveTicketProps {
   onReserve?: (data: {
@@ -22,7 +21,7 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
   const {
     from: storeFrom,
     destination: storeDestination,
-    clearReservationData,
+    setFullReservationData,
   } = useReservationStore();
 
   const [from, setFrom] = useState("");
@@ -35,10 +34,9 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
     if (storeFrom && storeDestination) {
       setFrom(storeFrom);
       setDestination(storeDestination);
-      // Clear the store data after using it
-      clearReservationData();
+      // Don't clear the store data here - let it persist for checkout
     }
-  }, [storeFrom, storeDestination, clearReservationData]);
+  }, [storeFrom, storeDestination]);
 
   // Update parent component whenever form data changes
   useEffect(() => {
@@ -60,16 +58,17 @@ function ReserveTicket({ onReserve }: ReserveTicketProps) {
       travelers,
     };
 
-    if (date) {
-      // Navigate to checkout with URL params using utility function
-      const urlParams = encodeReservationToUrl({
-        from,
-        destination,
-        date,
-        travelers,
-      });
+    console.log("ReserveTicket - saving reservation data:", reservationData);
 
-      router.push(`/checkout?${urlParams}`);
+    if (date) {
+      // Save reservation data to cookies via store
+      setFullReservationData(reservationData);
+
+      // Small delay to ensure cookie is set before navigation
+      setTimeout(() => {
+        console.log("ReserveTicket - navigating to checkout");
+        router.push("/checkout");
+      }, 100);
     }
   };
 
