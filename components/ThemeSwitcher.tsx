@@ -11,13 +11,13 @@ const themes = [
 ];
 
 function ThemeSwitcher() {
-  const [currentTheme, setCurrentTheme] = useState("blue");
+  const [currentTheme, setCurrentTheme] = useState("green");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem("theme") || "blue";
+    const savedTheme = localStorage.getItem("theme") || "green";
     setCurrentTheme(savedTheme);
     applyTheme(savedTheme);
   }, []);
