@@ -4,20 +4,20 @@ import { useState, useEffect, useRef } from "react";
 import { IconCheck, IconPalette } from "@tabler/icons-react";
 
 const themes = [
+  { name: "Blue", color: "#0169b7", value: "blue" },
   { name: "Green", color: "#0FC754", value: "green" },
   { name: "Orange", color: "#FFAE05", value: "orange" },
   { name: "Red", color: "#FF2605", value: "red" },
-  { name: "Blue", color: "#0169b7", value: "blue" },
 ];
 
 function ThemeSwitcher() {
-  const [currentTheme, setCurrentTheme] = useState("green");
+  const [currentTheme, setCurrentTheme] = useState("blue");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem("theme") || "green";
+    const savedTheme = localStorage.getItem("theme") || "blue";
     setCurrentTheme(savedTheme);
     applyTheme(savedTheme);
   }, []);
