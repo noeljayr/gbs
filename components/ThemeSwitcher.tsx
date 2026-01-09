@@ -50,7 +50,7 @@ function ThemeSwitcher() {
         root.style.setProperty("--primary", "#0FC754");
         root.style.setProperty("--cta-color", "#ffff");
         break;
-      case "orange":
+      case "Yellow":
         root.style.setProperty("--primary", "#FFAE05");
         root.style.setProperty("--cta-color", "#1E1E1E");
         break;
