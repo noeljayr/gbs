@@ -43,7 +43,7 @@ function MobileScheduleSwiper() {
         >
           {busSchedule.map((s) => (
             <SwiperSlide key={s.id}>
-              <div className="bg-white mx-1 border border-(--black)/10 rounded-2xl h-full">
+              <div className="bg-white m-1 border border-(--black)/10 rounded-2xl h-full">
                 <div className="flex flex-col p-3 h-full">
                   {/* Route Header */}
                   <div className="flex flex-col mb-3">
