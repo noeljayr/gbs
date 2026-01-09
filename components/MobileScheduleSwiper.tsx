@@ -6,7 +6,11 @@ import ReserveButton from "./ReserveButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Navigation, Pagination } from "swiper/modules";
-import { IconArrowNarrowRightDashed, IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import {
+  IconArrowNarrowRightDashed,
+  IconChevronLeft,
+  IconChevronRight,
+} from "@tabler/icons-react";
 
 // Import Swiper styles
 import "swiper/css";
@@ -71,25 +75,29 @@ function MobileScheduleSwiper() {
                   </div>
 
                   {/* Time Info */}
-                  <div className="flex flex-col space-y-2 mb-3 bg-gray-50 rounded-lg p-2">
-                    <div className="flex justify-between text-xs">
-                      <div>
-                        <div className="text-gray-500 mb-1">Departure</div>
-                        <div className="font-medium text-gray-900">
-                          {s.departureTime}
-                        </div>
+                  <div className="flex items-center justify-between mb-3 bg-gray-50 rounded-lg p-3">
+                    <div className="">
+                      <div className="text-xs text-gray-500 mb-1">
+                        Departure
                       </div>
-                      <div>
-                        <div className="text-gray-500 mb-1">Arrival</div>
-                        <div className="font-medium text-gray-900">
-                          {s.arrivalTime}
+                      <div className="font-medium text-gray-900">
+                        {s.departureTime}
+                      </div>
+                    </div>
+                    <div className="flex-1 mx-4">
+                      <div className="border-t border-t-black/15 border-dashed h-px relative">
+                        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-50 px-2">
+                          <span className="text-xs text-gray-500">
+                            {s.hourDifference}h
+                          </span>
                         </div>
                       </div>
                     </div>
                     <div className="text-center">
-                      <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded">
-                        {s.hourDifference}h
-                      </span>
+                      <div className="text-xs text-gray-500 mb-1">Arrival</div>
+                      <div className="font-medium text-gray-900">
+                        {s.arrivalTime}
+                      </div>
                     </div>
                   </div>
 
@@ -105,7 +113,6 @@ function MobileScheduleSwiper() {
                           {stop}
                         </span>
                       ))}
-                     
                     </div>
                   </div>
 
