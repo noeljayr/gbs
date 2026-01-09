@@ -73,7 +73,7 @@ function page() {
   }
 
   return (
-    <div className="fixed grid h-screen w-screen top-0 left-0 grid-cols-2 overflow-y-hidden max-[900px]:grid-cols-1 max-[900px]:grid-rows-[60%_1fr] gap-10">
+    <div className="fixed grid h-screen w-screen top-0 left-0 grid-cols-2 overflow-y-hidden max-[900px]:grid-cols-1 max-[900px]:grid-rows-[1fr_auto] gap-10">
       <div className="flex flex-col w-full h-full overflow-y-auto pt-10 max-[900px]:px-4 pl-10">
         <Link href={"/"} className="flex items-center space-x-1 w-fit mb-10">
           <IconChevronLeft className="h-4 w-4 opacity-50" />
@@ -163,7 +163,7 @@ function page() {
         </div>
       </div>
 
-      <div className="h-full max-sm:h-fit  w-full border-l border-l-[#E7E7E7] bg-[#F9F8F7]/85 flex flex-col pt-16 max-[900px]:pt-4 px-10 max-sm:px-4 min-[1440px]:px-[10vw]">
+      <div className="h-full max-sm:h-fit  w-full border-l border-l-[#E7E7E7] bg-[#F9F8F7]/85 flex flex-col pt-16 max-[900px]:pt-4 px-10 max-sm:px-4 min-[1440px]:px-[10vw] max-sm:pb-10">
         <div className="flex flex-col space-y-4 w-full pt-10 pr-10 max-sm:pr-0">
           <span className="opacity-50 font-p3">Payment Details</span>
 

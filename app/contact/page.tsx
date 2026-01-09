@@ -12,7 +12,7 @@ function page() {
     <div className="flex flex-col pt-16 pb-10">
       <div className="flex flex-col">
         <h3>Contact us</h3>
-        <p className="opacity-75 w-[65ch] max-sm:w-[65%]">
+        <p className="opacity-75 w-[65ch] max-sm:w-[90%]">
           Connect with us your way whether by email, phone, social media, or a quick direct message. We’re here to respond promptly and keep the conversation flowing.
         </p>
       </div>

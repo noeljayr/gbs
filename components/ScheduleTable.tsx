@@ -152,7 +152,7 @@ function ScheduleTable() {
                   {s.busStops.map((stop, index) => (
                     <span
                       key={index}
-                      className="inline-flex font-p2 items-center px-4 py-2 bg-black/5 border-black/10 border rounded-full"
+                      className="inline-flex font-p3 items-center px-4 py-2 bg-black/5 border-black/10 border rounded-full"
                     >
                       {stop}
                     </span>
