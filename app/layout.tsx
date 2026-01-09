@@ -43,7 +43,7 @@ export default function RootLayout({
                       root.style.setProperty('--cta-color', '#ffff');
                       break;
                     case 'orange':
-                      root.style.setProperty('--primary', '#FFAE05');
+                      root.style.setProperty('--primary', '#F9C048');
                       root.style.setProperty('--cta-color', '#1E1E1E');
                       break;
                     case 'red':
