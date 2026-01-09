@@ -141,7 +141,7 @@ function MobileScheduleSwiper() {
                   key={index}
                   onClick={() => swiperInstance?.slideTo(index)}
                   disabled={!swiperInstance}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer border-2 border-black/10 disabled:cursor-not-allowed ${
+                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer border border-black/10 disabled:cursor-not-allowed ${
                     activeSlide === index ? "bg-black/5 w-6" : " w-2.5 "
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
