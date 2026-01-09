@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import { IconCheck, IconPalette } from "@tabler/icons-react";
 
 const themes = [
-  { name: "Blue", color: "#0169b7", value: "blue" },
   { name: "Green", color: "#0FC754", value: "green" },
   { name: "Orange", color: "#FFAE05", value: "orange" },
   { name: "Red", color: "#FF2605", value: "red" },
+  { name: "Blue", color: "#0169b7", value: "blue" },
 ];
 
 function ThemeSwitcher() {
