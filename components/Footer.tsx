@@ -7,6 +7,7 @@ import {
 } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 function Footer() {
   const pathname = usePathname();
@@ -16,7 +17,7 @@ function Footer() {
   }
 
   return (
-    <div className="flex flex-col py-10">
+    <div className="flex flex-col pt-10 pb-0">
       <div className="w-full flex max-sm:flex-col max-sm:gap-10 justify-between">
         <div className="flex flex-col">
           <span className="font-bold font-p1">Gian’s Bus Services</span>
@@ -75,7 +76,8 @@ function Footer() {
 
       <div className="flex items-center w-full mt-6">
         <div className="flex space-x-2">
-          <span className="font-normal">© 2025</span>
+          <ThemeSwitcher />
+          {/* <span className="font-normal">© 2025</span> */}
 
           {/* <span className="opacity-25">•</span>
 
@@ -86,13 +88,20 @@ function Footer() {
           <span className="font-normal opacity-65">Privacy</span> */}
         </div>
 
-        <div className="flex item-center space-x-2 ml-auto mt-6">
-          <IconBrandInstagram
-            strokeWidth={1.5}
-            className="h-5 w-5 opacity-75"
-          />
-          <IconBrandFacebook strokeWidth={1.5} className="h-5 w-5 opacity-75" />
-          <IconBrandX strokeWidth={1.5} className="h-5 w-5 opacity-75" />
+        <div className="flex items-center space-x-4 ml-auto">
+          
+
+          <div className="flex items-center space-x-2">
+            <IconBrandInstagram
+              strokeWidth={1.5}
+              className="h-5 w-5 opacity-75"
+            />
+            <IconBrandFacebook
+              strokeWidth={1.5}
+              className="h-5 w-5 opacity-75"
+            />
+            <IconBrandX strokeWidth={1.5} className="h-5 w-5 opacity-75" />
+          </div>
         </div>
       </div>
     </div>

@@ -27,8 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={` antialiased px-10 max-sm:px-4 min-[1440px]:px-[14vw] py-20`}>
-        <NextTopLoader color="#0169b7" showSpinner={false} />
+      <body className={` antialiased px-10 max-sm:px-4 min-[1440px]:px-[14vw] py-20 pb-8`}>
+        <NextTopLoader color="var(--primary)" showSpinner={false} />
         <Navbar />
         <Suspense fallback={null}>
           <MobileNav />

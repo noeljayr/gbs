@@ -15,7 +15,7 @@ function Reasons() {
         </p>
       </div>
 
-      <div className="grid min-[900px]:grid-cols-4 sm:grid-cols-2 gap-8 w-full overflow-x-auto max-sm:grid-flow-col">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 w-full overflow-x-auto max-sm:grid-flow-col">
         <div className="flex flex-col space-y-4 max-sm:w-[16rem] max-sm:p-2 max-sm:bg-[#1E1E1E]/2 rounded-xl max-sm:border  border-[#1E1E1E]/5">
           <span className="h-10 w-10 bg-[#F6ECFF] rounded-[0.4rem] flex items-center justify-center">
             <Image src={wallet} alt="wallet icon" className="h-6 w-6" />
